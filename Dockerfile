@@ -37,7 +37,10 @@ RUN mkdir /home/dev/code
 WORKDIR /home/dev/code
 
 RUN git clone https://github.com/samisagit/dot-files.git ~/dot-files
-RUN cd ~/dot-files && git remote set-url origin git@github.com:samisagit/dot-files.git
+RUN cd ~/dot-files && git remote set-url origin git@github.com:samisagit/dot-files.git && cd -
+
+RUN git config --global user.name "samisagit"
+RUN git config --global user.email "sam@whiteteam.co.uk"
 
 RUN ln -s ~/dot-files/.config ~/.config
 
