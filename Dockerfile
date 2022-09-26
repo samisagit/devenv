@@ -46,4 +46,4 @@ RUN ln -s ~/dot-files/.config ~/.config
 
 RUN nvim --headless +PlugInstall +qall
 
-ENTRYPOINT [ "/usr/bin/zsh" ]
+ENTRYPOINT [ "nvim", "." ]
