@@ -36,7 +36,7 @@ RUN echo "export GPG_TTY=$(tty)" >> ~/.zshrc
 RUN mkdir /home/dev/code
 WORKDIR /home/dev/code
 
-RUN git clone https://github.com/samisagit/dot-files ~/dot-files
+RUN git clone git@github.com:samisagit/devenv.git ~/dot-files
 
 RUN ln -s ~/dot-files/.config ~/.config
 
