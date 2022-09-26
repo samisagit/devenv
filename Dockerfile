@@ -36,6 +36,9 @@ RUN echo "export GPG_TTY=$(tty)" >> ~/.zshrc
 RUN mkdir /home/dev/code
 WORKDIR /home/dev/code
 
+RUN ssh-keygen -t rsa -f ~/.ssh/id_rsa -N ""
+RUN eval $(ssh-agent)
+RUN ssh-add ~/.ssh/id_rsa
 RUN git clone git@github.com:samisagit/devenv.git ~/dot-files
 
 RUN ln -s ~/dot-files/.config ~/.config
