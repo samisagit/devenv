@@ -12,7 +12,7 @@ RUN add-apt-repository "deb http://kryptco.github.io/deb kryptco main"
 
 # Install packages we don't care about versions of
 RUN apt-get update
-RUN apt-get install -y tmux curl zsh git build-essential curl libffi-dev libgmp-dev libgmp10 libncurses-dev libncurses5 libtinfo5 dirmngr apt-transport-https kr wget
+RUN apt-get install -y tmux curl zsh git build-essential curl libffi-dev libgmp-dev libgmp10 libncurses-dev libncurses5 libtinfo5 dirmngr apt-transport-https kr wget openssh-client
 
 RUN git config --global commit.gpgsign true
 RUN git config --global gpg.program /usr/bin/krgpg
@@ -36,10 +36,8 @@ RUN echo "export GPG_TTY=$(tty)" >> ~/.zshrc
 RUN mkdir /home/dev/code
 WORKDIR /home/dev/code
 
-RUN ssh-keygen -t rsa -f ~/.ssh/id_rsa -N ""
-RUN eval $(ssh-agent)
-RUN ssh-add ~/.ssh/id_rsa
-RUN git clone git@github.com:samisagit/devenv.git ~/dot-files
+RUN git clone https://github.com/samisagit/dot-files.git ~/dot-files
+RUN cd ~/dot-files && git remote set-url origin git@github.com:samisagit/dot-files.git
 
 RUN ln -s ~/dot-files/.config ~/.config
 
