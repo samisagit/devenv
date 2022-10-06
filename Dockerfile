@@ -40,6 +40,7 @@ RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master
 RUN rm ~/.zshrc
 RUN ln -s ~/dot-files/.zshrc ~/.zshrc
 RUN echo "export GPG_TTY=$(tty)" >> ~/.zshrc
+RUN echo "export USER=dev" >> ~/.zshenv
 
 # Install go
 RUN curl -Lo go1.19.2.linux-amd64.tar.gz https://go.dev/dl/go1.19.2.linux-amd64.tar.gz
