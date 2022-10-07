@@ -1,3 +1,11 @@
 #!/bin/bash
 
-docker run -it -v $(pwd):/home/dev/code samisagit/devenv:master
+function containing_dir {
+        cd "$(dirname $1)"
+}
+
+function abs() {
+        echo "$(containing_dir $1 && pwd)/$(basename $1)"
+}
+
+docker run -it -v $(abs "$@"):/home/dev/mount/$(basename abs "$@") samisagit/devenv:master /home/dev/mount/$(basename abs "$@")
